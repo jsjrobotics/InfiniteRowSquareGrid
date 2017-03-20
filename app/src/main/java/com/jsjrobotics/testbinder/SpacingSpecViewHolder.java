@@ -67,7 +67,7 @@ public class SpacingSpecViewHolder extends RecyclerView.ViewHolder {
             horizontalList.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, contentSizePx));
             horizontalList.setPadding(mSpacingSpec.getMarginPx(context), 0, mSpacingSpec.getMarginPx(context), 0);
             horizontalList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-            horizontalList.setAdapter(new HorizontalSquareViewAdapter(new SpacingSpecData(false, content, null), contentSizePx));
+            horizontalList.setAdapter(new HorizontalSquareViewAdapter(new SpacingSpecData(false, content), contentSizePx, mSpacingSpec.getPaddingPx(context), true));
             mRoot.addView(horizontalList);
         }
 
@@ -82,9 +82,9 @@ public class SpacingSpecViewHolder extends RecyclerView.ViewHolder {
         RecyclerView horizontalList = new RecyclerView(context);
         horizontalList.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, contentSizePx));
         horizontalList.setClipToPadding(false);
-        horizontalList.setPadding(mSpacingSpec.getMarginPx(context), 0, 0, 0);
+        horizontalList.setPadding(mSpacingSpec.getMarginPx(context), 0, mSpacingSpec.getMarginPx(context), 0);
         horizontalList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-        horizontalList.setAdapter(new HorizontalSquareViewAdapter(mData, contentSizePx));
+        horizontalList.setAdapter(new HorizontalSquareViewAdapter(mData, contentSizePx, mSpacingSpec.getPaddingPx(context), false));
         mRoot.addView(horizontalList);
 
     }
