@@ -41,6 +41,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private SpacingSpecData buildVerticalList() {
-        return new SpacingSpecData(true, Arrays.asList(9, 10, 11, 12), VERTICAL_DISPLAY_DP);
+        return new SpacingSpecData(true, Arrays.asList(9, 10, 11, 12, 13, 14, 15,16,17,18,19,20), VERTICAL_DISPLAY_DP);
     }
 }

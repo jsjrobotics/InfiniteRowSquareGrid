@@ -48,13 +48,17 @@ public class SpacingSpecViewHolder extends RecyclerView.ViewHolder {
 
         // Divide list into span sizes
         List<List<Integer>> chunks = new ArrayList<>();
-        for (int index = 0; index < mData.data.size(); index+= mSpacingSpec.span) {
-            List<Integer> current = new ArrayList<>();
-            current.add(mData.data.get(index));
-            if (index +1 < mData.data.size()) {
-                current.add(mData.data.get(index+1));
+        List<Integer> toAdd = new ArrayList<>();
+
+        for (int index = 0; index < mData.data.size(); index++) {
+            if (index > 0 && index % mSpacingSpec.span == 0) {
+                chunks.add(toAdd);
+                toAdd = new ArrayList<>();
             }
-            chunks.add(current);
+            toAdd.add(mData.data.get(index));
+        }
+        if (!toAdd.isEmpty()) {
+            chunks.add(toAdd);
         }
 
         // Build linear layouts of content height size and parent width
