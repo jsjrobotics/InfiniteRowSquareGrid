@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.jsjrobotics.testbinder.spacingSpecRecycler.SpacingSpec;
+import com.jsjrobotics.testbinder.spacingSpecRecycler.SpacingSpecAdapter;
+import com.jsjrobotics.testbinder.spacingSpecRecycler.SpacingSpecData;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {

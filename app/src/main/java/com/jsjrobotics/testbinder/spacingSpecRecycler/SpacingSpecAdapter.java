@@ -1,4 +1,4 @@
-package com.jsjrobotics.testbinder;
+package com.jsjrobotics.testbinder.spacingSpecRecycler;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;

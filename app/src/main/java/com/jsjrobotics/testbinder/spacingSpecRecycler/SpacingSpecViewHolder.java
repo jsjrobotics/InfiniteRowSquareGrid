@@ -1,4 +1,4 @@
-package com.jsjrobotics.testbinder;
+package com.jsjrobotics.testbinder.spacingSpecRecycler;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
@@ -6,8 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+
+import com.jsjrobotics.testbinder.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +65,10 @@ public class SpacingSpecViewHolder extends RecyclerView.ViewHolder {
         // Build linear layouts of content height size and parent width
         for (List<Integer> content : chunks) {
             RecyclerView horizontalList = new RecyclerView(context);
-            horizontalList.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, contentSizePx));
+            LinearLayout.LayoutParams params= new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, contentSizePx);
+            params.setMargins(0, mSpacingSpec.getPaddingPx(context), 0, mSpacingSpec.getPaddingPx(context));
+
+            horizontalList.setLayoutParams(params);
             horizontalList.setPadding(mSpacingSpec.getMarginPx(context), 0, mSpacingSpec.getMarginPx(context), 0);
             horizontalList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
             horizontalList.setAdapter(new HorizontalSquareViewAdapter(new SpacingSpecData(false, content), contentSizePx, mSpacingSpec.getPaddingPx(context)));
@@ -78,7 +82,9 @@ public class SpacingSpecViewHolder extends RecyclerView.ViewHolder {
         // Add padding equal to the margin to left size
         Context context = mRoot.getContext();
         int contentSizePx = mSpacingSpec.getContentSizePx(context);
-        mRoot.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, contentSizePx));
+        LinearLayout.LayoutParams rootParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, contentSizePx);
+        rootParams.setMargins(0, mSpacingSpec.getPaddingPx(context), 0, mSpacingSpec.getPaddingPx(context));
+        mRoot.setLayoutParams(rootParams);
         RecyclerView horizontalList = new RecyclerView(context);
         horizontalList.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, contentSizePx));
         horizontalList.setClipToPadding(false);
@@ -86,6 +92,5 @@ public class SpacingSpecViewHolder extends RecyclerView.ViewHolder {
         horizontalList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         horizontalList.setAdapter(new HorizontalSquareViewAdapter(mData, contentSizePx, mSpacingSpec.getPaddingPx(context)));
         mRoot.addView(horizontalList);
-
     }
 }

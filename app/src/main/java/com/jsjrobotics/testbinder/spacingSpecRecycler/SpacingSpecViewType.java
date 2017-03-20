@@ -1,4 +1,6 @@
-package com.jsjrobotics.testbinder;
+package com.jsjrobotics.testbinder.spacingSpecRecycler;
+
+import com.jsjrobotics.testbinder.R;
 
 public enum SpacingSpecViewType {
     VERTICAL(R.id.vertical_view_type),

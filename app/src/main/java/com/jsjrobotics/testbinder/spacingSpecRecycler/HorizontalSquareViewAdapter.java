@@ -1,7 +1,10 @@
-package com.jsjrobotics.testbinder;
+package com.jsjrobotics.testbinder.spacingSpecRecycler;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+
+import com.jsjrobotics.testbinder.spacingSpecRecycler.SpacingSpecData;
+import com.jsjrobotics.testbinder.spacingSpecRecycler.SquareViewViewHolder;
 
 import java.util.List;
 

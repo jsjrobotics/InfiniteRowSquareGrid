@@ -1,7 +1,9 @@
-package com.jsjrobotics.testbinder;
+package com.jsjrobotics.testbinder.spacingSpecRecycler;
 
 
 import android.content.Context;
+
+import com.jsjrobotics.testbinder.ViewUtils;
 
 public class SpacingSpec {
     public final int span;
