@@ -9,13 +9,11 @@ public class HorizontalSquareViewAdapter extends RecyclerView.Adapter<SquareView
     private final List<Integer> mData;
     private final int mContentSizePx;
     private final Integer mInternalPaddingPx;
-    private final boolean mIsVertical;
 
-    public HorizontalSquareViewAdapter(SpacingSpecData data, int contentSizePx, Integer internalPaddingPx, boolean isVertical) {
+    public HorizontalSquareViewAdapter(SpacingSpecData data, int contentSizePx, Integer internalPaddingPx) {
         mData = data.data;
         mContentSizePx = contentSizePx;
         mInternalPaddingPx = internalPaddingPx;
-        mIsVertical = isVertical;
     }
 
     @Override
@@ -28,16 +26,8 @@ public class HorizontalSquareViewAdapter extends RecyclerView.Adapter<SquareView
         holder.bind(mData.get(position));
         if (mInternalPaddingPx != null) {
             int paddingRight = mInternalPaddingPx;
-            int paddingLeft = 0;
+            int paddingLeft = mInternalPaddingPx;
 
-            if (!mIsVertical) {
-                if (position + 1 == getItemCount()) {
-                    paddingRight = mInternalPaddingPx * 2;
-                }
-            }
-            if (position > 0){
-                paddingLeft = mInternalPaddingPx;
-            }
             holder.setPadding(paddingLeft, paddingRight);
         }
 
