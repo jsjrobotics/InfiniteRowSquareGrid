@@ -1,14 +1,18 @@
 package com.jsjrobotics.testbinder.spacingSpecRecycler;
 
 
+import android.view.ViewGroup;
+
 import java.util.List;
 
-public class SpacingSpecData {
+public class SpacingSpecData<T> {
     public final boolean isVertical;
-    public final List<Integer> data;
+    public final List<T> content;
+    public final BiFunction<SpacingSpecViewHolder<T>, ViewGroup, SpacingSpec> viewHolderCreator;
 
-    public SpacingSpecData(boolean isVertical, List<Integer> data) {
+    public SpacingSpecData(final boolean isVertical, final List<T> data, final BiFunction<SpacingSpecViewHolder<T>, ViewGroup, SpacingSpec> viewholderCreator) {
         this.isVertical = isVertical;
-        this.data = data;
+        this.content = data;
+        this.viewHolderCreator = viewholderCreator;
     }
 }

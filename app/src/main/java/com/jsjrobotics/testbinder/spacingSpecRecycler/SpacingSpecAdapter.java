@@ -4,23 +4,21 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import java.util.List;
+import java.util.Map;
 
-public class SpacingSpecAdapter extends RecyclerView.Adapter<SpacingSpecViewHolder> {
+public class SpacingSpecAdapter extends RecyclerView.Adapter<SpacingSpecViewHolder<?>> {
 
-    private final List<SpacingSpecData> mData;
+    private final List<SpacingSpecData<?>> mData;
     private final SpacingSpec mSpacingSpec;
 
-    public SpacingSpecAdapter(SpacingSpec spec, List<SpacingSpecData> data) {
+    public SpacingSpecAdapter(SpacingSpec spec, List<SpacingSpecData<?>> data) {
         mData = data;
         mSpacingSpec = spec;
     }
 
     @Override
     public SpacingSpecViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == SpacingSpecViewType.VERTICAL.id) {
-            return new SpacingSpecViewHolder(parent, mSpacingSpec, SpacingSpecViewType.VERTICAL);
-        }
-        return new SpacingSpecViewHolder(parent, mSpacingSpec, SpacingSpecViewType.HORIZONTAL);
+        return mData.get(viewType).viewHolderCreator.accept(parent, mSpacingSpec);
     }
 
     @Override
@@ -30,10 +28,7 @@ public class SpacingSpecAdapter extends RecyclerView.Adapter<SpacingSpecViewHold
 
     @Override
     public int getItemViewType(int position) {
-        if (mData.get(position).isVertical) {
-            return SpacingSpecViewType.VERTICAL.id;
-        }
-        return SpacingSpecViewType.HORIZONTAL.id;
+        return position;
     }
 
     @Override

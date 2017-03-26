@@ -3,9 +3,6 @@ package com.jsjrobotics.testbinder.spacingSpecRecycler;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
-import com.jsjrobotics.testbinder.spacingSpecRecycler.SpacingSpecData;
-import com.jsjrobotics.testbinder.spacingSpecRecycler.SquareViewViewHolder;
-
 import java.util.List;
 
 public class HorizontalSquareViewAdapter extends RecyclerView.Adapter<SquareViewViewHolder> {
@@ -14,7 +11,7 @@ public class HorizontalSquareViewAdapter extends RecyclerView.Adapter<SquareView
     private final Integer mInternalPaddingPx;
 
     public HorizontalSquareViewAdapter(SpacingSpecData data, int contentSizePx, Integer internalPaddingPx) {
-        mData = data.data;
+        mData = data.content;
         mContentSizePx = contentSizePx;
         mInternalPaddingPx = internalPaddingPx;
     }
