@@ -64,7 +64,7 @@ public class IntegerSpacingSpecViewHolder extends SpacingSpecViewHolder<Integer>
     }
 
     @Override
-    public void bindHorizontalList(SpacingSpecData<Integer> spacingSpecData) {
+    public void bindHorizontalList(SpacingSpecData<Integer> data) {
         // Build a Horizontal Scroll View with height w
         // Add padding equal to the margin to left size
         Context context = mRoot.getContext();
@@ -77,7 +77,7 @@ public class IntegerSpacingSpecViewHolder extends SpacingSpecViewHolder<Integer>
         horizontalList.setClipToPadding(false);
         horizontalList.setPadding(mSpacingSpec.getMarginPx(context), 0, mSpacingSpec.getMarginPx(context), 0);
         horizontalList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-        horizontalList.setAdapter(new HorizontalSquareViewAdapter(spacingSpecData, contentSizePx, mSpacingSpec.getPaddingPx(context)));
+        horizontalList.setAdapter(new HorizontalSquareViewAdapter(data, contentSizePx, mSpacingSpec.getPaddingPx(context)));
         mRoot.addView(horizontalList);
     }
 }
