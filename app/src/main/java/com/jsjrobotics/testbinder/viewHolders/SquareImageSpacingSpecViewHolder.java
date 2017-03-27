@@ -41,7 +41,7 @@ public class SquareImageSpacingSpecViewHolder extends SpacingSpecViewHolder<Stri
         // Build a Horizontal Scroll View with height w
         // Add padding equal to the margin to left size
         Context context = mRoot.getContext();
-        int contentSizePx = mSpacingSpec.getContentSizePx(context);
+        int contentSizePx = mSpacingSpec.getContentSizePx(context, data);
         LinearLayout.LayoutParams rootParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, contentSizePx);
         rootParams.setMargins(0, mSpacingSpec.getPaddingPx(context), 0, mSpacingSpec.getPaddingPx(context));
         mRoot.setLayoutParams(rootParams);

@@ -30,15 +30,21 @@ public class IntegerSpacingSpecViewHolder extends SpacingSpecViewHolder<Integer>
     public void bindVerticalList(BiFunction<SpacingSpecViewHolder<Integer>, ViewGroup, SpacingSpec> viewHolderCreator, SpacingSpecData<Integer> data) {
         // Set parent size
         Context context = mRoot.getContext();
-        int contentSizePx = mSpacingSpec.getContentSizePx(context);
+        int contentSizePx = mSpacingSpec.getContentSizePx(context, data);
         mRoot.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
         // Divide list into span sizes
         List<List<Integer>> chunks = new ArrayList<>();
         List<Integer> toAdd = new ArrayList<>();
+        final int columns;
+        if (data.overrideColumns.isPresent()) {
+            columns = data.overrideColumns.get();
+        } else {
+            columns = mSpacingSpec.span;
+        }
 
         for (int index = 0; index < data.content.size(); index++) {
-            if (index > 0 && index % mSpacingSpec.span == 0) {
+            if (index > 0 && index % columns == 0) {
                 chunks.add(toAdd);
                 toAdd = new ArrayList<>();
             }
@@ -57,7 +63,7 @@ public class IntegerSpacingSpecViewHolder extends SpacingSpecViewHolder<Integer>
             horizontalList.setLayoutParams(params);
             horizontalList.setPadding(mSpacingSpec.getMarginPx(context), 0, mSpacingSpec.getMarginPx(context), 0);
             horizontalList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-            horizontalList.setAdapter(new HorizontalSquareViewAdapter(new SpacingSpecData<>(false, content, viewHolderCreator), contentSizePx, mSpacingSpec.getPaddingPx(context)));
+            horizontalList.setAdapter(new HorizontalSquareViewAdapter(new SpacingSpecData<>(false, content, viewHolderCreator, columns), contentSizePx, mSpacingSpec.getPaddingPx(context)));
             mRoot.addView(horizontalList);
         }
 
@@ -68,7 +74,7 @@ public class IntegerSpacingSpecViewHolder extends SpacingSpecViewHolder<Integer>
         // Build a Horizontal Scroll View with height w
         // Add padding equal to the margin to left size
         Context context = mRoot.getContext();
-        int contentSizePx = mSpacingSpec.getContentSizePx(context);
+        int contentSizePx = mSpacingSpec.getContentSizePx(context, data);
         LinearLayout.LayoutParams rootParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, contentSizePx);
         rootParams.setMargins(0, mSpacingSpec.getPaddingPx(context), 0, mSpacingSpec.getPaddingPx(context));
         mRoot.setLayoutParams(rootParams);

@@ -59,15 +59,15 @@ public class MainView {
     }
 
     private SpacingSpecData<Integer> buildHorizontalList2() {
-        return new SpacingSpecData<>(false, buildIntegerList(5,9), buildSpacingSpecCreator());
+        return new SpacingSpecData<>(false, buildIntegerList(5,9), buildSpacingSpecCreator(), 4);
     }
 
     private SpacingSpecData<Integer> buildHorizontalList1() {
-        return new SpacingSpecData<>(false, buildIntegerList(1,5), buildSpacingSpecCreator());
+        return new SpacingSpecData<>(false, buildIntegerList(1,5), buildSpacingSpecCreator(), 2);
     }
 
     private SpacingSpecData<Integer> buildVerticalList() {
-        return new SpacingSpecData<>(true, buildIntegerList(9, 16), buildSpacingSpecCreator());
+        return new SpacingSpecData<>(true, buildIntegerList(9, 16), buildSpacingSpecCreator(), 5);
     }
 
     private SpacingSpecData<Integer> buildHorizontalList3() {
