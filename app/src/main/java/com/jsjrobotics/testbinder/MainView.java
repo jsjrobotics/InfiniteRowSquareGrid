@@ -55,31 +55,31 @@ public class MainView {
     }
 
     private SpacingSpecData<Integer> buildHorizontalList2() {
-        return new SpacingSpecData<>(false, buildIntegerList(5,9), buildSpacingSpecCreator() );
+        return new SpacingSpecData<>(false, buildIntegerList(5,9), buildImageViewHolder() );
     }
 
     private SpacingSpecData<Integer> buildHorizontalList1() {
-        return new SpacingSpecData<>(false, buildIntegerList(1,5), buildSpacingSpecCreator());
+        return new SpacingSpecData<>(false, buildIntegerList(1,5), buildImageViewHolder());
     }
 
     private SpacingSpecData<Integer> buildVerticalList() {
-        return new SpacingSpecData<>(true, buildIntegerList(9, 16), buildSpacingSpecCreator());
+        return new SpacingSpecData<>(true, buildIntegerList(9, 16), buildImageViewHolder());
     }
 
     private SpacingSpecData<Integer> buildHorizontalList3() {
-        return new SpacingSpecData<>(false, buildIntegerList(16,28), buildSpacingSpecCreator());
+        return new SpacingSpecData<>(false, buildIntegerList(16,28), buildImageViewHolder());
     }
 
     private SpacingSpecData<Integer> buildVerticalList2() {
-        return new SpacingSpecData<>(true, buildIntegerList(28, 42), buildSpacingSpecCreator());
+        return new SpacingSpecData<>(true, buildIntegerList(28, 42), buildImageViewHolder());
     }
 
     private SpacingSpecData<Integer> buildHorizontalList4() {
-        return new SpacingSpecData<>(false, buildIntegerList(42,56), buildSpacingSpecCreator());
+        return new SpacingSpecData<>(false, buildIntegerList(42,56), buildImageViewHolder());
     }
 
     private SpacingSpecData<String> buildHorizontalList5() {
-        return new SpacingSpecData<>(false, buildUrlList(), buildUrlSpacingSpecCreator());
+        return new SpacingSpecData<>(false, buildUrlList(), buildUrlViewHolder());
     }
 
     private List<String> buildUrlList() {
@@ -92,7 +92,7 @@ public class MainView {
         );
     }
 
-    private BiFunction<SpacingSpecViewHolder<String>, ViewGroup, SpacingSpec> buildUrlSpacingSpecCreator() {
+    private BiFunction<SpacingSpecViewHolder<String>, ViewGroup, SpacingSpec> buildUrlViewHolder() {
         return new BiFunction<SpacingSpecViewHolder<String>, ViewGroup, SpacingSpec>() {
             @Override
             public SpacingSpecViewHolder<String> accept(ViewGroup data, SpacingSpec spacingSpec) {
@@ -102,7 +102,7 @@ public class MainView {
     }
 
 
-    private BiFunction<SpacingSpecViewHolder<Integer>, ViewGroup, SpacingSpec> buildSpacingSpecCreator() {
+    private BiFunction<SpacingSpecViewHolder<Integer>, ViewGroup, SpacingSpec> buildImageViewHolder() {
         return new BiFunction<SpacingSpecViewHolder<Integer>, ViewGroup, SpacingSpec>() {
             @Override
             public SpacingSpecViewHolder<Integer> accept(ViewGroup parent, SpacingSpec spacingSpec) {

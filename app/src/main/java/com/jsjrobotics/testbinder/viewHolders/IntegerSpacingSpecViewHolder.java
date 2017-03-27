@@ -3,9 +3,11 @@ package com.jsjrobotics.testbinder.viewHolders;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.jsjrobotics.testbinder.R;
 import com.jsjrobotics.testbinder.spacingSpecRecycler.BiFunction;
 import com.jsjrobotics.testbinder.spacingSpecRecycler.HorizontalSquareViewAdapter;
 import com.jsjrobotics.testbinder.spacingSpecRecycler.SpacingSpec;
@@ -50,19 +52,28 @@ public class IntegerSpacingSpecViewHolder extends SpacingSpecViewHolder<Integer>
 
         // Build linear layouts of content height size and parent width
         for (List<Integer> content : chunks) {
-            RecyclerView horizontalList = new RecyclerView(context);
             LinearLayout.LayoutParams params= new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, contentSizePx);
             params.setMargins(0, mSpacingSpec.getPaddingPx(context), 0, mSpacingSpec.getPaddingPx(context));
-
+            RecyclerView horizontalList = inflateRecyclerView(context);
             horizontalList.setLayoutParams(params);
             horizontalList.setPadding(mSpacingSpec.getMarginPx(context), 0, mSpacingSpec.getMarginPx(context), 0);
             horizontalList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
             horizontalList.setAdapter(new HorizontalSquareViewAdapter(new SpacingSpecData<>(false, content, viewHolderCreator), contentSizePx, mSpacingSpec.getPaddingPx(context)));
-            mRoot.addView(horizontalList);
+            //mRoot.addView(horizontalList);
         }
 
     }
 
+    private RecyclerView inflateRecyclerView(Context context) {
+        if (false) {
+            // Leaks here
+            return new RecyclerView(context);
+        }
+        // Note the false
+        ViewGroup parent = (ViewGroup) LayoutInflater.from(mRoot.getContext()).inflate(R.layout.recycler_view, mRoot, true);
+        return (RecyclerView) parent.getChildAt(parent.getChildCount()-1);
+
+    }
     @Override
     public void bindHorizontalList(SpacingSpecData<Integer> data) {
         // Build a Horizontal Scroll View with height w
@@ -72,12 +83,12 @@ public class IntegerSpacingSpecViewHolder extends SpacingSpecViewHolder<Integer>
         LinearLayout.LayoutParams rootParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, contentSizePx);
         rootParams.setMargins(0, mSpacingSpec.getPaddingPx(context), 0, mSpacingSpec.getPaddingPx(context));
         mRoot.setLayoutParams(rootParams);
-        RecyclerView horizontalList = new RecyclerView(context);
+        RecyclerView horizontalList = inflateRecyclerView(context);
         horizontalList.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, contentSizePx));
         horizontalList.setClipToPadding(false);
         horizontalList.setPadding(mSpacingSpec.getMarginPx(context), 0, mSpacingSpec.getMarginPx(context), 0);
         horizontalList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         horizontalList.setAdapter(new HorizontalSquareViewAdapter(data, contentSizePx, mSpacingSpec.getPaddingPx(context)));
-        mRoot.addView(horizontalList);
+        //mRoot.addView(horizontalList);
     }
 }
