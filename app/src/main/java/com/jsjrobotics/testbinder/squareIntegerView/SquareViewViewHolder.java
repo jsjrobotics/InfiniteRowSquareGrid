@@ -1,4 +1,4 @@
-package com.jsjrobotics.testbinder.spacingSpecRecycler;
+package com.jsjrobotics.testbinder.squareIntegerView;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,11 +10,11 @@ import android.widget.TextView;
 
 import com.jsjrobotics.testbinder.R;
 
-public class SquareViewViewHolder extends RecyclerView.ViewHolder {
+class SquareViewViewHolder extends RecyclerView.ViewHolder {
     private final TextView mTextView;
     private final View mRoot;
 
-    public SquareViewViewHolder(ViewGroup parent, int contentSize) {
+    SquareViewViewHolder(ViewGroup parent, int contentSize) {
         super(createView(parent, contentSize));
         mRoot = itemView;
         mTextView = (TextView) itemView.findViewById(R.id.content);
@@ -27,11 +27,11 @@ public class SquareViewViewHolder extends RecyclerView.ViewHolder {
         return view;
     }
 
-    public void bind(Integer integer) {
+    void bind(Integer integer) {
         mTextView.setText("" + integer);
     }
 
-    public void setPadding(int paddingLeft, int paddingRight) {
+    void setPadding(int paddingLeft, int paddingRight) {
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         int top = 0;
         int bottom = 0;

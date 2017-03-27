@@ -1,4 +1,4 @@
-package com.jsjrobotics.testbinder.viewHolders;
+package com.jsjrobotics.testbinder.squareImageView;
 
 
 import android.content.Context;
@@ -11,8 +11,6 @@ import android.widget.LinearLayout;
 import com.jsjrobotics.defaultTemplate.lifecycle.functional.WeakReferenceSupplier;
 import com.jsjrobotics.defaultTemplate.prioritydownloader.PriorityDownloader;
 import com.jsjrobotics.testbinder.spacingSpecRecycler.BiFunction;
-import com.jsjrobotics.testbinder.spacingSpecRecycler.HorizontalImageSquareViewAdapter;
-import com.jsjrobotics.testbinder.spacingSpecRecycler.HorizontalSquareViewAdapter;
 import com.jsjrobotics.testbinder.spacingSpecRecycler.SpacingSpec;
 import com.jsjrobotics.testbinder.spacingSpecRecycler.SpacingSpecData;
 import com.jsjrobotics.testbinder.spacingSpecRecycler.SpacingSpecViewHolder;

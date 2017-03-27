@@ -5,9 +5,9 @@ import android.content.Context;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
-public class ViewUtils {
+class ViewUtils {
 
-    public static int getScreenWidthPx(Context context) {
+    static int getScreenWidthPx(Context context) {
         return getDisplayMetrics(context).widthPixels;
     }
 
@@ -23,7 +23,7 @@ public class ViewUtils {
         return metrics;
     }
 
-    public static float pxFromDp(final Context context, final float dp) {
+    static float pxFromDp(final Context context, final float dp) {
         return dp * context.getResources().getDisplayMetrics().density;
     }
 }

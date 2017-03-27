@@ -1,4 +1,4 @@
-package com.jsjrobotics.testbinder.spacingSpecRecycler;
+package com.jsjrobotics.testbinder.squareImageView;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -17,12 +17,12 @@ import com.jsjrobotics.defaultTemplate.prioritydownloader.ImageUtils;
 import com.jsjrobotics.defaultTemplate.prioritydownloader.PriorityDownloader;
 import com.jsjrobotics.testbinder.R;
 
-public class SquareImageViewViewHolder extends RecyclerView.ViewHolder {
+class SquareImageViewViewHolder extends RecyclerView.ViewHolder {
     private final ImageView mImageView;
     private final PriorityDownloader mDownloader;
     private WeakReferenceSupplier<Fragment> mContext;
 
-    public SquareImageViewViewHolder(PriorityDownloader downloader, WeakReferenceSupplier<Fragment> context, ViewGroup parent, int contentSize) {
+    SquareImageViewViewHolder(PriorityDownloader downloader, WeakReferenceSupplier<Fragment> context, ViewGroup parent, int contentSize) {
         super(createView(parent, contentSize));
         mImageView = (ImageView) itemView.findViewById(R.id.content);
         mContext = context;
@@ -36,7 +36,7 @@ public class SquareImageViewViewHolder extends RecyclerView.ViewHolder {
         return view;
     }
 
-    public void bind(String url) {
+    void bind(String url) {
         mImageView.setBackgroundColor(0x88115572);
         final WeakReferenceSupplier<ImageView> imageViewSupplier = new WeakReferenceSupplier<>(mImageView);
         ImageUtils.downloadAndDisplayImage(mContext, mDownloader, imageViewSupplier, url, R.id.square_image_view_holder);
@@ -51,7 +51,7 @@ public class SquareImageViewViewHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public void setPadding(int paddingLeft, int paddingRight) {
+    void setPadding(int paddingLeft, int paddingRight) {
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         int top = 0;
         int bottom = 0;
@@ -59,7 +59,7 @@ public class SquareImageViewViewHolder extends RecyclerView.ViewHolder {
         mImageView.setLayoutParams(params);
     }
 
-    public void onViewRecycled() {
+    void onViewRecycled() {
         recycleBitmap();
     }
 }

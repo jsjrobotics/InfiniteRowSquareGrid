@@ -3,8 +3,6 @@ package com.jsjrobotics.testbinder;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,29 +10,29 @@ import android.view.ViewGroup;
 import com.jsjrobotics.defaultTemplate.lifecycle.functional.WeakReferenceSupplier;
 import com.jsjrobotics.defaultTemplate.prioritydownloader.PriorityDownloader;
 import com.jsjrobotics.testbinder.spacingSpecRecycler.BiFunction;
+import com.jsjrobotics.testbinder.spacingSpecRecycler.InfiniteRowSquareGrid;
 import com.jsjrobotics.testbinder.spacingSpecRecycler.SpacingSpec;
-import com.jsjrobotics.testbinder.spacingSpecRecycler.SpacingSpecAdapter;
 import com.jsjrobotics.testbinder.spacingSpecRecycler.SpacingSpecData;
 import com.jsjrobotics.testbinder.spacingSpecRecycler.SpacingSpecViewHolder;
-import com.jsjrobotics.testbinder.viewHolders.IntegerSpacingSpecViewHolder;
-import com.jsjrobotics.testbinder.viewHolders.SquareImageSpacingSpecViewHolder;
+import com.jsjrobotics.testbinder.squareImageView.SquareImageSpacingSpecViewHolder;
+import com.jsjrobotics.testbinder.squareIntegerView.IntegerSpacingSpecViewHolder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainView {
+class MainView {
     private final View mRoot;
     private final WeakReferenceSupplier<Fragment> mContext;
     private final PriorityDownloader mDownloader;
-    private RecyclerView mRecyclerView;
+    private InfiniteRowSquareGrid mRecyclerView;
     private final List<SpacingSpecData<?>> mData = new ArrayList<>();
 
     private static final int SPAN = 3;
     private static final int MARGIN_DP = 16;
     private static final int PADDING_DP = MARGIN_DP / 4;
 
-    public MainView(
+    MainView(
             WeakReferenceSupplier<Fragment> context,
             LayoutInflater inflater,
             ViewGroup parent,
@@ -52,10 +50,9 @@ public class MainView {
                 buildHorizontalList4(),
                 buildHorizontalList5()
         ));
-        mRecyclerView = (RecyclerView) mRoot.findViewById(R.id.content_list);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(mRoot.getContext()));
+        mRecyclerView = (InfiniteRowSquareGrid) mRoot.findViewById(R.id.content_list);
         SpacingSpec mSpacingSpec = new SpacingSpec(SPAN, MARGIN_DP, PADDING_DP);
-        mRecyclerView.setAdapter(new SpacingSpecAdapter(mSpacingSpec, mData));
+        mRecyclerView.setData(mSpacingSpec, mData);
     }
 
     private SpacingSpecData<Integer> buildHorizontalList2() {
@@ -97,22 +94,12 @@ public class MainView {
     }
 
     private BiFunction<SpacingSpecViewHolder<String>, ViewGroup, SpacingSpec> buildUrlSpacingSpecCreator() {
-        return new BiFunction<SpacingSpecViewHolder<String>, ViewGroup, SpacingSpec>() {
-            @Override
-            public SpacingSpecViewHolder<String> accept(ViewGroup data, SpacingSpec spacingSpec) {
-                return new SquareImageSpacingSpecViewHolder(mDownloader, mContext, data, spacingSpec);
-            }
-        };
+        return (data, spacingSpec) -> new SquareImageSpacingSpecViewHolder(mDownloader, mContext, data, spacingSpec);
     }
 
 
     private BiFunction<SpacingSpecViewHolder<Integer>, ViewGroup, SpacingSpec> buildSpacingSpecCreator() {
-        return new BiFunction<SpacingSpecViewHolder<Integer>, ViewGroup, SpacingSpec>() {
-            @Override
-            public SpacingSpecViewHolder<Integer> accept(ViewGroup parent, SpacingSpec spacingSpec) {
-                return new IntegerSpacingSpecViewHolder(parent, spacingSpec);
-            }
-        };
+        return (parent, spacingSpec) -> new IntegerSpacingSpecViewHolder(parent, spacingSpec);
     }
 
     private List<Integer> buildIntegerList(int startInclusive, int endExclusive) {
@@ -123,7 +110,7 @@ public class MainView {
         return result;
     }
 
-    public View getLayout() {
+    View getLayout() {
         return mRoot;
     }
 }

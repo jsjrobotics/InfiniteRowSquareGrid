@@ -1,16 +1,18 @@
-package com.jsjrobotics.testbinder.spacingSpecRecycler;
+package com.jsjrobotics.testbinder.squareIntegerView;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
+import com.jsjrobotics.testbinder.spacingSpecRecycler.SpacingSpecData;
+
 import java.util.List;
 
-public class HorizontalSquareViewAdapter extends RecyclerView.Adapter<SquareViewViewHolder> {
+class HorizontalSquareViewAdapter extends RecyclerView.Adapter<SquareViewViewHolder> {
     private final List<Integer> mData;
     private final int mContentSizePx;
     private final Integer mInternalPaddingPx;
 
-    public HorizontalSquareViewAdapter(SpacingSpecData data, int contentSizePx, Integer internalPaddingPx) {
+    HorizontalSquareViewAdapter(SpacingSpecData data, int contentSizePx, Integer internalPaddingPx) {
         mData = data.content;
         mContentSizePx = contentSizePx;
         mInternalPaddingPx = internalPaddingPx;

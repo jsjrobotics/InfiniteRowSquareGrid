@@ -1,4 +1,4 @@
-package com.jsjrobotics.testbinder.spacingSpecRecycler;
+package com.jsjrobotics.testbinder.squareImageView;
 
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -6,17 +6,18 @@ import android.view.ViewGroup;
 
 import com.jsjrobotics.defaultTemplate.lifecycle.functional.WeakReferenceSupplier;
 import com.jsjrobotics.defaultTemplate.prioritydownloader.PriorityDownloader;
+import com.jsjrobotics.testbinder.spacingSpecRecycler.SpacingSpecData;
 
 import java.util.List;
 
-public class HorizontalImageSquareViewAdapter extends RecyclerView.Adapter<SquareImageViewViewHolder> {
+class HorizontalImageSquareViewAdapter extends RecyclerView.Adapter<SquareImageViewViewHolder> {
     private final List<String> mData;
     private final int mContentSizePx;
     private final Integer mInternalPaddingPx;
     private final PriorityDownloader mDownloader;
     private WeakReferenceSupplier<Fragment> mContext;
 
-    public HorizontalImageSquareViewAdapter(PriorityDownloader downloader, WeakReferenceSupplier<Fragment> context, SpacingSpecData<String> data, int contentSizePx, Integer internalPaddingPx) {
+    HorizontalImageSquareViewAdapter(PriorityDownloader downloader, WeakReferenceSupplier<Fragment> context, SpacingSpecData<String> data, int contentSizePx, Integer internalPaddingPx) {
         mData = data.content;
         mContentSizePx = contentSizePx;
         mInternalPaddingPx = internalPaddingPx;

@@ -1,4 +1,4 @@
-package com.jsjrobotics.testbinder.viewHolders;
+package com.jsjrobotics.testbinder.squareIntegerView;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.jsjrobotics.testbinder.spacingSpecRecycler.BiFunction;
-import com.jsjrobotics.testbinder.spacingSpecRecycler.HorizontalSquareViewAdapter;
 import com.jsjrobotics.testbinder.spacingSpecRecycler.SpacingSpec;
 import com.jsjrobotics.testbinder.spacingSpecRecycler.SpacingSpecData;
 import com.jsjrobotics.testbinder.spacingSpecRecycler.SpacingSpecViewHolder;
