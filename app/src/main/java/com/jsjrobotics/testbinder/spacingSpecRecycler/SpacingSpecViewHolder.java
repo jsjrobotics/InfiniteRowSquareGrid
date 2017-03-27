@@ -40,4 +40,6 @@ public abstract class SpacingSpecViewHolder<T> extends RecyclerView.ViewHolder {
     public abstract void bindVerticalList(BiFunction<SpacingSpecViewHolder<T>, ViewGroup, SpacingSpec> viewHolderCreator, SpacingSpecData<T> data);
 
     public abstract void bindHorizontalList(SpacingSpecData<T> data);
+
+    public abstract void onViewRecycled();
 }

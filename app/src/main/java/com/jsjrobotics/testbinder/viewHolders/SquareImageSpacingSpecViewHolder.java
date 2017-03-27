@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.jsjrobotics.defaultTemplate.lifecycle.functional.WeakReferenceSupplier;
+import com.jsjrobotics.defaultTemplate.prioritydownloader.PriorityDownloader;
 import com.jsjrobotics.testbinder.spacingSpecRecycler.BiFunction;
 import com.jsjrobotics.testbinder.spacingSpecRecycler.HorizontalImageSquareViewAdapter;
 import com.jsjrobotics.testbinder.spacingSpecRecycler.HorizontalSquareViewAdapter;
@@ -17,15 +18,17 @@ import com.jsjrobotics.testbinder.spacingSpecRecycler.SpacingSpecData;
 import com.jsjrobotics.testbinder.spacingSpecRecycler.SpacingSpecViewHolder;
 
 public class SquareImageSpacingSpecViewHolder extends SpacingSpecViewHolder<String> {
-    private final ViewGroup mRoot;
+    private ViewGroup mRoot;
     private final SpacingSpec mSpacingSpec;
+    private final PriorityDownloader mDownloader;
     private WeakReferenceSupplier<Fragment> mContext;
 
-    public SquareImageSpacingSpecViewHolder(WeakReferenceSupplier<Fragment> context, ViewGroup data, SpacingSpec spacingSpec) {
+    public SquareImageSpacingSpecViewHolder(PriorityDownloader downloader, WeakReferenceSupplier<Fragment> context, ViewGroup data, SpacingSpec spacingSpec) {
         super(data, spacingSpec);
         mRoot = (ViewGroup) itemView;
         mSpacingSpec = spacingSpec;
         mContext = context;
+        mDownloader = downloader;
     }
 
     @Override
@@ -47,7 +50,12 @@ public class SquareImageSpacingSpecViewHolder extends SpacingSpecViewHolder<Stri
         horizontalList.setClipToPadding(false);
         horizontalList.setPadding(mSpacingSpec.getMarginPx(context), 0, mSpacingSpec.getMarginPx(context), 0);
         horizontalList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-        horizontalList.setAdapter(new HorizontalImageSquareViewAdapter(mContext, data, contentSizePx, mSpacingSpec.getPaddingPx(context)));
+        horizontalList.setAdapter(new HorizontalImageSquareViewAdapter(mDownloader, mContext, data, contentSizePx, mSpacingSpec.getPaddingPx(context)));
         mRoot.addView(horizontalList);
+    }
+
+    @Override
+    public void onViewRecycled() {
+        mRoot.removeAllViews();
     }
 }

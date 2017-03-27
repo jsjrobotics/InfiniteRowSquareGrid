@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IntegerSpacingSpecViewHolder extends SpacingSpecViewHolder<Integer> {
-    private final ViewGroup mRoot;
+    private ViewGroup mRoot;
     private final SpacingSpec mSpacingSpec;
 
     public IntegerSpacingSpecViewHolder(ViewGroup parent, SpacingSpec spacingSpec) {
@@ -79,5 +79,10 @@ public class IntegerSpacingSpecViewHolder extends SpacingSpecViewHolder<Integer>
         horizontalList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         horizontalList.setAdapter(new HorizontalSquareViewAdapter(data, contentSizePx, mSpacingSpec.getPaddingPx(context)));
         mRoot.addView(horizontalList);
+    }
+
+    @Override
+    public void onViewRecycled() {
+        mRoot.removeAllViews();
     }
 }

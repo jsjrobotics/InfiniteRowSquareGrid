@@ -4,7 +4,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import java.util.List;
-import java.util.Map;
 
 public class SpacingSpecAdapter extends RecyclerView.Adapter<SpacingSpecViewHolder<?>> {
 
@@ -31,6 +30,10 @@ public class SpacingSpecAdapter extends RecyclerView.Adapter<SpacingSpecViewHold
         return position;
     }
 
+    @Override
+    public void onViewRecycled(SpacingSpecViewHolder holder) {
+        holder.onViewRecycled();
+    }
     @Override
     public int getItemCount() {
         return mData.size();

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jsjrobotics.defaultTemplate.lifecycle.functional.WeakReferenceSupplier;
+import com.jsjrobotics.defaultTemplate.prioritydownloader.PriorityDownloader;
 import com.jsjrobotics.testbinder.spacingSpecRecycler.BiFunction;
 import com.jsjrobotics.testbinder.spacingSpecRecycler.SpacingSpec;
 import com.jsjrobotics.testbinder.spacingSpecRecycler.SpacingSpecAdapter;
@@ -25,6 +26,7 @@ import java.util.List;
 public class MainView {
     private final View mRoot;
     private final WeakReferenceSupplier<Fragment> mContext;
+    private final PriorityDownloader mDownloader;
     private RecyclerView mRecyclerView;
     private final List<SpacingSpecData<?>> mData = new ArrayList<>();
 
@@ -36,7 +38,9 @@ public class MainView {
             WeakReferenceSupplier<Fragment> context,
             LayoutInflater inflater,
             ViewGroup parent,
-            Bundle savedInstanceState) {
+            Bundle savedInstanceState,
+            PriorityDownloader downloader) {
+        mDownloader = downloader;
         mContext = context;
         mRoot = inflater.inflate(R.layout.main_fragment, parent, false);
         mData.addAll(Arrays.asList(
@@ -55,7 +59,7 @@ public class MainView {
     }
 
     private SpacingSpecData<Integer> buildHorizontalList2() {
-        return new SpacingSpecData<>(false, buildIntegerList(5,9), buildSpacingSpecCreator() );
+        return new SpacingSpecData<>(false, buildIntegerList(5,9), buildSpacingSpecCreator());
     }
 
     private SpacingSpecData<Integer> buildHorizontalList1() {
@@ -96,7 +100,7 @@ public class MainView {
         return new BiFunction<SpacingSpecViewHolder<String>, ViewGroup, SpacingSpec>() {
             @Override
             public SpacingSpecViewHolder<String> accept(ViewGroup data, SpacingSpec spacingSpec) {
-                return new SquareImageSpacingSpecViewHolder(mContext, data, spacingSpec);
+                return new SquareImageSpacingSpecViewHolder(mDownloader, mContext, data, spacingSpec);
             }
         };
     }

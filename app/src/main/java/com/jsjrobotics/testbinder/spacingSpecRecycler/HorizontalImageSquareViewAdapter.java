@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.jsjrobotics.defaultTemplate.lifecycle.functional.WeakReferenceSupplier;
+import com.jsjrobotics.defaultTemplate.prioritydownloader.PriorityDownloader;
 
 import java.util.List;
 
@@ -12,18 +13,21 @@ public class HorizontalImageSquareViewAdapter extends RecyclerView.Adapter<Squar
     private final List<String> mData;
     private final int mContentSizePx;
     private final Integer mInternalPaddingPx;
+    private final PriorityDownloader mDownloader;
     private WeakReferenceSupplier<Fragment> mContext;
 
-    public HorizontalImageSquareViewAdapter(WeakReferenceSupplier<Fragment> context, SpacingSpecData<String> data, int contentSizePx, Integer internalPaddingPx) {
+    public HorizontalImageSquareViewAdapter(PriorityDownloader downloader, WeakReferenceSupplier<Fragment> context, SpacingSpecData<String> data, int contentSizePx, Integer internalPaddingPx) {
         mData = data.content;
         mContentSizePx = contentSizePx;
         mInternalPaddingPx = internalPaddingPx;
         mContext = context;
+        mDownloader = downloader;
+
     }
 
     @Override
     public SquareImageViewViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new SquareImageViewViewHolder(mContext, parent, mContentSizePx);
+        return new SquareImageViewViewHolder(mDownloader, mContext, parent, mContentSizePx);
     }
 
     @Override
@@ -36,6 +40,11 @@ public class HorizontalImageSquareViewAdapter extends RecyclerView.Adapter<Squar
             holder.setPadding(paddingLeft, paddingRight);
         }
 
+    }
+
+    @Override
+    public void onViewRecycled(SquareImageViewViewHolder viewHolder) {
+        viewHolder.onViewRecycled();
     }
 
     @Override
